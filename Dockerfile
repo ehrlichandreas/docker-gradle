@@ -1,2 +1,11 @@
 FROM gradle:3.4-jdk8-alpine
-RUN apk --no-cache add git bash openssh wget curl
+USER root
+RUN set -o errexit -o nounset \
+    && echo "Installing dependencies" \
+    && apk add --no-cache \
+            git \
+            bash \
+            openssh \
+            wget \
+            curl
+USER gradle
